@@ -1,0 +1,30 @@
+<form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+</form>
+
+<script>
+    const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL'; // Replace with your Apps Script URL
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const data = { username, password };
+
+        try {
+            const response = await fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const result = await response.text();
+            alert(result); // Show success message
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to log in');
+        }
+    });
+</script>
