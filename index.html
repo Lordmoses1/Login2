@@ -28,3 +28,24 @@
         }
     });
 </script>
+ <script>
+  var form = document.getElementById('sheetdb-form');
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    fetch('https://sheetdb.io/api/v1/aoy6sgk30pe4f', {
+      method: "POST",
+      body: new FormData(form),
+    })
+    .then(response => response.json())
+    .then((data) => {
+      // Assuming the data is processed successfully, navigate to Notification.html
+      window.open('Notification.html', '_self');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    });
+  });
+</script>
+</script>
